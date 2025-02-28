@@ -7,6 +7,8 @@ from hashlib import blake2b
 from blake3 import blake3
 import itertools
 import concurrent.futures
+from hash_security_test import (calculate_avalanche_effect, test_bit_distribution,
+                              test_collision_resistance, plot_security_results)
 
 def generate_test_data(size_kb, pattern='random'):
     """Memory efficient test data generator"""
@@ -165,6 +167,30 @@ def main():
         # Plot results for this pattern
         plot_pattern_results(sizes, results, algorithms, f"Hash Performance - {pattern}")
         results.clear()
+    
+    # Add security testing section
+    print("\nPerforming security tests...")
+    security_results = {}
+    
+    for algo in algorithms:
+        print(f"\nTesting security properties of {algo}")
+        hash_func = create_hash_function(algo)
+        
+        # Run security tests
+        avalanche_mean, avalanche_std = calculate_avalanche_effect(hash_func)
+        bit_dist = test_bit_distribution(hash_func)
+        collisions = test_collision_resistance(hash_func)
+        
+        security_results[algo] = (avalanche_mean, bit_dist, collisions)
+        
+        print(f"  Avalanche Effect: {avalanche_mean:.2f}% (±{avalanche_std:.2f})")
+        print(f"  Bit Distribution χ²: {bit_dist:.2f}")
+        print(f"  Collisions found: {collisions}")
+    
+    # Plot security results
+    plot_security_results(security_results, 
+                         "Hash Function Security Metrics",
+                         "hash_security_comparison.png")
 
 def plot_pattern_results(sizes, results, algorithms, title):
     """Memory efficient plotting with multiple algorithms"""

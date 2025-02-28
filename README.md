@@ -25,3 +25,7 @@ python3 hash_performance_test.py
 ![Benchmark #3](hash_performance_hash_performance_-_ones.png "Benchmark #3")
 ![Benchmark #4](hash_performance_hash_performance_-_random.png "Benchmark #4")
 ![Benchmark #5](hash_performance_hash_performance_-_zeros.png "Benchmark #5")
+
+## Security tests
+
+![Security #1](hash_security_comparison.png "Security Test #1")
