@@ -4,6 +4,6 @@
 #include <stdint.h>
 #include <stddef.h>
 
-void cpuhash256(const uint8_t* message, size_t len, uint8_t hash[32]);
+void cpuhash256(const uint8_t *input, size_t len, uint8_t output[32]);
 
 #endif

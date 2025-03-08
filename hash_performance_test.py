@@ -137,7 +137,7 @@ def main():
     print("Starting comprehensive hash algorithm comparison...")
     
     # Get all available hash functions
-    algorithms = get_available_hashlib_algorithms() + ['blake3', 'cpuhash256']
+    algorithms = ['sha256', 'blake2b', 'blake2s', 'blake3', 'cpuhash256']
     print(f"Testing {len(algorithms)} hash algorithms: {', '.join(algorithms)}")
     
     # Test configurations
